@@ -51,6 +51,11 @@ kiwisolver==1.5.0
 libclang==18.1.1
 markdown-it-py==4.0.0
 MarkupSafe==3.0.3
+<<<<<<< HEAD
+=======
+matplotlib==3.11.0
+matplotlib-inline==0.2.2
+>>>>>>> 476e21da704ae35cb6efe8c2554bbab579785e5a
 mdurl==0.1.2
 ml_dtypes==0.5.4
 mpmath==1.3.0
