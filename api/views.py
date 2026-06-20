@@ -18,13 +18,30 @@ import json
 
 # ── ПОЛЯ ──────────────────────────────────────────────
 
+@csrf_exempt
 def field_list(request):
-    """GET /api/fields/ — список всех полей"""
-    fields = Field.objects.all().values(
-        'id','name','latitude','longitude',
-        'area_hectares','crop_type'
-    )
-    return JsonResponse({'fields': list(fields)})
+    """GET /api/fields/ - список всех полей"""
+    # Получаем данные из базы и сразу превращаем в список словарей
+    fields = list(Field.objects.all().values(
+        'id', 'name', 'latitude', 'longitude',
+        'area_hectares', 'crop_type'
+    ))
+
+    # Если список пустой, добавляем тестовую точку
+    if not fields:
+        fields = [
+            {
+                "id": 999,
+                "name": "Тестовый сектор ApriSoil",
+                "latitude": 42.8746,   # Широта Бишкека
+                "longitude": 74.5698,  # Долгота Бишкека
+                "area_hectares": 12.5,
+                "crop_type": "Wheat"
+            }
+        ]
+
+    return JsonResponse({'fields': fields})
+
 
 
 @csrf_exempt
